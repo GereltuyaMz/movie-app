@@ -1,0 +1,14 @@
+.navBar {
+	max-width: 1200px;
+	margin: 0 auto;
+	background-color: aquamarine;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px;
+
+	ul {
+		display: flex;
+		gap: 30px;
+	}
+}
