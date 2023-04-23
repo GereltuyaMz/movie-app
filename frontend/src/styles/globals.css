@@ -109,3 +109,8 @@ ul {
 		color-scheme: dark;
 	}
 } */
+
+body nav {
+	position: sticky;
+	top: 0;
+}

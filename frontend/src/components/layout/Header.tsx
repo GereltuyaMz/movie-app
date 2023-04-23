@@ -1,12 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "@/styles/Layout.module.scss";
 
 export const Header = () => {
+	const [color, setColor] = useState(false);
+
+	const changeColor = () => {
+		if (window.scrollY >= 90) {
+			setColor(true);
+		} else {
+			setColor(false);
+		}
+	};
+
+	window.addEventListener("scroll", changeColor);
+
 	return (
 		<nav className={styles.navBar}>
-			<div className={styles.navBarItems}>
+			<div
+				className={
+					color
+						? `${styles.navBarColor} ${styles.navBarItems}`
+						: `${styles.navBarItems}`
+				}
+			>
 				<Link href="/">
 					<Image
 						src="/vercel.svg"

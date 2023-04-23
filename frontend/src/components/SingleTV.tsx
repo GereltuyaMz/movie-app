@@ -11,7 +11,7 @@ export const SingleTV = ({ tv }: Props) => {
 	return (
 		<div className={styles.movie}>
 			<Image
-				src={`https://image.tmdb.org/t/p/w500${tv.poster_path}`}
+				src={`https://image.tmdb.org/t/p/w500/${tv.poster_path}`}
 				alt={`${tv.name} poster`}
 				width={270}
 				height={380}
