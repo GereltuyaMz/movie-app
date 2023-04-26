@@ -7,6 +7,7 @@ import {
 	TopRatedTV,
 } from "@/components";
 import type { Movies, Result, Series, TVResult } from "@/interfaces";
+import Head from "next/head";
 
 type Props = {
 	posts: Result[];
@@ -23,6 +24,16 @@ export default function Home({
 }: Props) {
 	return (
 		<>
+			<Head>
+				<title>
+					iPhone 12 XS Max For Sale in Colorado - Big Discounts | Apple
+				</title>
+				<meta
+					name="description"
+					content="Check out iPhone 12 XR Pro and iPhone 12 Pro Max. Visit your local store and for expert advice."
+					key="desc"
+				/>
+			</Head>
 			<Hero />
 			<div className={styles.container}>
 				<main className={styles.main}>

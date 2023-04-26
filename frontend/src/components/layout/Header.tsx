@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "@/styles/Layout.module.scss";
@@ -14,7 +14,9 @@ export const Header = () => {
 		}
 	};
 
-	window.addEventListener("scroll", changeColor);
+	useEffect(() => {
+		window.addEventListener("scroll", changeColor);
+	}, []);
 
 	return (
 		<nav className={styles.navBar}>
