@@ -1,12 +1,13 @@
 import React from "react";
+import { useSession } from "next-auth/react";
 
 const Movies = () => {
+	const { data: session, status } = useSession();
+	console.log("session", session);
+	console.log("status", status);
 	return (
 		<div>
-			<label>Enter a time between 9 am and 5 pm:</label>
-			<input type="time" id="time" name="time" min="09:00" max="17:00" />
-			<p>adkaskdjk</p>
-			
+			<h1>Movies</h1>
 		</div>
 	);
 };
