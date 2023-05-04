@@ -1,13 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Link from "next/link";
 import Image from "next/image";
+// import { signIn, signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 import styles from "@/styles/Layout.module.scss";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { LocalContext, AuthContextType } from "@/context/LocalStorageContext";
 
 export const Header = () => {
-	const { data: session, status } = useSession();
+	// const { data: session, status } = useSession();
+	// const { auth, logout } = useLocalStorageAuth();
 	const [color, setColor] = useState(false);
-
+	const router = useRouter();
+	const { auth, userData, logout } = useContext(
+		LocalContext
+	) as AuthContextType;
 	const changeColor = () => {
 		if (window.scrollY >= 90) {
 			setColor(true);
@@ -20,18 +26,23 @@ export const Header = () => {
 		window.addEventListener("scroll", changeColor);
 	}, []);
 
-	const handleLogin = (e: any) => {
-		e.preventDefault();
-		signIn();
+	// const handleLogin = (e: any) => {
+	// 	e.preventDefault();
+	// 	signIn();
+	// };
+
+	// const handleLogOut = (e: any) => {
+	// 	e.preventDefault();
+	// 	signOut();
+	// };
+
+	const handlelogOut = () => {
+		logout();
+		router.push("/login");
 	};
 
-	const handleLogOut = (e: any) => {
-		e.preventDefault();
-		signOut();
-	};
-
-	console.log("session", session);
-	console.log("status", status);
+	// console.log("current user", auth);
+	// console.log("current user data", userData);
 	return (
 		<>
 			{/* <header>
@@ -80,9 +91,25 @@ export const Header = () => {
 						<li>
 							<Link href="/series">TV Series</Link>
 						</li>
-						<li>
-							<Link href="/profile">Profile</Link>
-						</li>
+						{auth ? (
+							<>
+								<li>
+									<Link href="/profile">Profile</Link>
+								</li>
+								<li className={styles.logout} onClick={handlelogOut}>
+									logout
+								</li>
+							</>
+						) : (
+							<>
+								<li>
+									<Link href="/signup">Sign Up</Link>
+								</li>
+								<li>
+									<Link href="/login">Log In</Link>
+								</li>
+							</>
+						)}
 					</ul>
 				</div>
 			</nav>

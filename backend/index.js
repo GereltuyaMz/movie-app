@@ -3,6 +3,8 @@ import cors from "cors";
 import colors from "colors";
 import * as dotenv from 'dotenv';
 import connectMongoDB from "./config/mongoDB.js";
+import movieRoutes from "./routes/movieRoute.js";
+import userRoutes from "./routes/userRoute.js";
 dotenv.config();
 
 const PORT = process.env.PORT;
@@ -13,9 +15,8 @@ app.use(express.static('public'))
 app.use(express.json());
 app.use(cors());
 
-// app.use("/products", productRoutes);
-// app.use("/users", userRoutes)
-// app.use('/fileUpload', express.static('uploads'))
+app.use("/movies", movieRoutes);
+app.use("/users", userRoutes);
 
 app.get('/', (req, res) => {
   res.json({ message: "Hello" });
