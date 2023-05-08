@@ -1,9 +1,9 @@
 import mongoose from 'mongoose';
 
-const MovieSchema = new mongoose.Schema({
+const TopratingSchema = new mongoose.Schema({
   title: {
     type: String,
-    required: "Title is required!"
+    required: [true, 'A title is required.'],
   },
   overview: String,
   poster: String,
@@ -25,10 +25,6 @@ const MovieSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
-  postedBy: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-  }]
 })
 
-export default mongoose.model('Movie', MovieSchema)
+export default mongoose.model('Toprating', TopratingSchema)

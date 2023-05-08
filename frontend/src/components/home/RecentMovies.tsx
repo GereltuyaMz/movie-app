@@ -16,7 +16,7 @@ export const RecentMovies = ({ posts }: Props) => {
 			</div>
 			<div className={styles.movies}>
 				{posts.map((movie) => {
-					return <SingleMovie movie={movie} key={movie.id} />;
+					return <SingleMovie movie={movie} key={movie._id} />;
 				})}
 			</div>
 		</section>

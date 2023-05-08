@@ -16,7 +16,7 @@ export const TopRated = ({ topRatedData }: Props) => {
 			</div>
 			<div className={styles.movies}>
 				{topRatedData.map((movie) => {
-					return <SingleMovie movie={movie} key={movie.id} />;
+					return <SingleMovie movie={movie} key={movie._id} />;
 				})}
 			</div>
 		</section>

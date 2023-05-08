@@ -2,6 +2,8 @@ import React, { FormEvent, useState, useContext, useEffect } from "react";
 import styles from "@/styles/Auth.module.scss";
 import { useRouter } from "next/router";
 import { LocalContext, AuthContextType } from "@/context/LocalStorageContext";
+import { FcGoogle } from "react-icons/fc";
+import { signIn } from "next-auth/react";
 
 const LogIn = () => {
 	const router = useRouter();
@@ -18,6 +20,10 @@ const LogIn = () => {
 			router.push("/");
 		}
 	}, [auth]);
+
+	async function handleGoogleSignIn() {
+		signIn("google", { callbackUrl: "http://localhost:3000" });
+	}
 
 	return (
 		<div className={styles.container}>
@@ -48,6 +54,12 @@ const LogIn = () => {
 					</div>
 					<div className={`${styles.inputBox} ${styles.button}`}>
 						<button>Log In</button>
+					</div>
+					<div className={styles.inputButton}>
+						<button className={styles.google} onClick={handleGoogleSignIn}>
+							Sign in with Google
+							<FcGoogle size={20} />
+						</button>
 					</div>
 				</form>
 			</div>

@@ -1,0 +1,44 @@
+.detail {
+	display: flex;
+	justify-content: center;
+	gap: 50px;
+	padding: 100px 0;
+
+	.movieImg {
+		border-radius: 10px;
+	}
+	.info {
+		flex: 0.5;
+		.title {
+			margin-bottom: 20px;
+			font-size: 40px;
+		}
+		.actions {
+			display: flex;
+			align-items: center;
+			gap: 20px;
+			.review,
+			.trailer {
+				display: flex;
+				align-items: center;
+				gap: 5px;
+			}
+		}
+		.genres {
+			margin: 10px 0 15px;
+		}
+		.overview {
+			margin: 20px 0;
+			line-height: 1.5;
+
+			h4 {
+				margin-bottom: 8px;
+				font-size: 28px;
+			}
+		}
+		.credits {
+			display: flex;
+			justify-content: space-between;
+		}
+	}
+}
