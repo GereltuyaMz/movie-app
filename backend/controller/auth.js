@@ -55,5 +55,10 @@ export const logIn = async (req, res) => {
 }
 
 export const protect = async (req, res) => {
-  return res.status(200).json({ message: "User data display" })
+  const { _id, email, username } = await User.findById(req.user.id);
+  return res.status(200).json({
+    id: _id,
+    email,
+    username
+  })
 }

@@ -31,8 +31,8 @@ export const Header = () => {
 		router.push("/login");
 	};
 
-	if (session) {
-		return <NextAuth session={session} />;
+	if (session || auth) {
+		return <NextAuth session={session} userData={userData} />;
 	}
 
 	return (
@@ -90,7 +90,7 @@ export const Header = () => {
 	);
 };
 
-const NextAuth = ({ session }: any) => {
+const NextAuth = ({ session, userData }: any) => {
 	const [color, setColor] = useState(false);
 
 	const changeColor = () => {
@@ -140,6 +140,7 @@ const NextAuth = ({ session }: any) => {
 					</li>
 					<li>
 						<Link href="/profile">Profile</Link>
+						<p>{userData?.email}</p>
 						<p>{session?.user?.email}</p>
 					</li>
 					<li className={styles.logout} onClick={handleLogOut}>

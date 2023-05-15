@@ -34,6 +34,12 @@ const UserSchema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Movie'
     }
+  ],
+  wishlists: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'WishList'
+    }
   ]
 })
 

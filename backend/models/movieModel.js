@@ -28,7 +28,11 @@ const MovieSchema = new mongoose.Schema({
   postedBy: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-  }]
+  }],
+  wishlist: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'WishList'
+  }
 })
 
 export default mongoose.model('Movie', MovieSchema)

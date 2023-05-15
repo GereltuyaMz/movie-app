@@ -58,3 +58,13 @@ export const getTopRatedMovies = async (req, res) => {
     res.status(404).json({ message: error.message })
   }
 }
+
+export const searchByTitle = async (req, res) => {
+  const { keyword } = req.query;
+  try {
+    const movies = await Movie.find({ title: { $regex: keyword, $options: 'i' } });
+    res.status(200).json(movies);
+  } catch (error) {
+    res.status(404).json({ message: error.message })
+  }
+}

@@ -1,4 +1,5 @@
 import styles from "@/styles/Home.module.scss";
+import React, { useContext } from "react";
 import {
 	Hero,
 	RecentMovies,
@@ -8,6 +9,7 @@ import {
 } from "@/components";
 import type { Movies, Result, Series, TVResult } from "@/interfaces";
 import SignUp from "./signup";
+import { LocalContext, AuthContextType } from "@/context/LocalStorageContext";
 import LogIn from "./login";
 import { useSession } from "next-auth/react";
 
@@ -20,11 +22,17 @@ const movieURL = "http://localhost:8080/movies";
 
 export default function Home({ posts, topRatedData }: Props) {
 	const { data: session, status } = useSession();
+	const { auth, userData } = useContext(LocalContext) as AuthContextType;
 
-	if (status === "loading") return null;
+	console.log("userData", userData);
+	// if (status === "loading") return null;
 	return (
 		<>
-			{session ? <User posts={posts} topRatedData={topRatedData} /> : <Guest />}
+			{session || auth ? (
+				<User posts={posts} topRatedData={topRatedData} />
+			) : (
+				<Guest />
+			)}
 		</>
 	);
 }

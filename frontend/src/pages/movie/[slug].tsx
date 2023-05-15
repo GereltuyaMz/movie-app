@@ -1,15 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import styles from "@/styles/Detail.module.scss";
-import { BsBookmark, BsPlay, BsFillStarFill } from "react-icons/bs";
+import {
+	BsBookmark,
+	BsPlay,
+	BsFillStarFill,
+	BsFillBookmarkFill,
+} from "react-icons/bs";
 import { Result } from "@/interfaces";
 import { GetStaticProps, GetStaticPaths } from "next";
 import slugify from "@sindresorhus/slugify";
+import { LocalContext, AuthContextType } from "@/context/LocalStorageContext";
 
 const movieURL = "http://localhost:8080/movies";
 
 const Detail = ({ movie }: any) => {
-	console.log("movie", movie);
+	const [bookmarked, setBookmarked] = useState(false);
+
+	const handleWishList = () => {
+		setBookmarked(!bookmarked);
+		
+	};
+
 	return (
 		<div className={styles.detail}>
 			<Image
@@ -30,7 +42,9 @@ const Detail = ({ movie }: any) => {
 						<BsFillStarFill />
 						<p>{movie.vote_average}</p>
 					</div>
-					<BsBookmark />
+					<div className={styles.bookmark} onClick={handleWishList}>
+						{bookmarked ? <BsFillBookmarkFill /> : <BsBookmark />}
+					</div>
 					<div className={styles.trailer}>
 						<BsPlay />
 						<p>play trailer</p>
